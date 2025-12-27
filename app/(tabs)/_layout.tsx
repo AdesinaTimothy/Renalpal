@@ -6,7 +6,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         tabBarActiveTintColor: "#0ea5e9",
         tabBarInactiveTintColor: "#94a3b8",
 
@@ -40,6 +40,7 @@ export default function TabLayout() {
         name="learn"
         options={{
           title: "Learn",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="book-outline" size={size} color={color} />
           ),
@@ -49,6 +50,7 @@ export default function TabLayout() {
         name="quiz"
         options={{
           title: "Quiz",
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="school-outline" size={size} color={color} />
           ),
@@ -59,6 +61,7 @@ export default function TabLayout() {
         name="meds"
         options={{
           title: "Meds",
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="bandage-outline" size={size} color={color} />
           ),

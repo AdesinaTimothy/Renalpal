@@ -19,13 +19,16 @@ export default function LearnLayout() {
         name="index"
         options={{
           title: "Learn",
+          headerShown: true,
         }}
       />
       <Stack.Screen
         name="[topicId]"
         options={{
+          headerShown: true,
           title: "Topic Details",
-          headerBackTitle: "Back",
+          headerBackTitle: "Learn",
+          presentation: "card",
         }}
       />
     </Stack>
