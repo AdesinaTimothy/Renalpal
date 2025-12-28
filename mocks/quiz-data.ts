@@ -1,3 +1,8 @@
+import { Ionicons } from "@expo/vector-icons";
+
+
+export type IoniconName = keyof typeof Ionicons.glyphMap;
+
 export interface QuizQuestion {
   id: string;
   question: string;
@@ -6,11 +11,13 @@ export interface QuizQuestion {
   explanation: string;
 }
 
+
+
 export interface QuizCategory {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  icon: IoniconName;
   color: string;
   questions: QuizQuestion[];
 }
@@ -20,7 +27,7 @@ export const quizCategories: QuizCategory[] = [
     id: 'basics',
     title: 'Dialysis Basics',
     description: 'Learn the fundamentals of dialysis treatment',
-    icon: 'BookOpen',
+    icon: 'heart-outline',
     color: '#4A90E2',
     questions: [
       {
@@ -84,7 +91,7 @@ export const quizCategories: QuizCategory[] = [
     id: 'treatment',
     title: 'Treatment & Care',
     description: 'Understanding your treatment process',
-    icon: 'Heart',
+    icon: 'heart-outline',
     color: '#E94B3C',
     questions: [
       {
@@ -153,7 +160,7 @@ export const quizCategories: QuizCategory[] = [
     id: 'diet',
     title: 'Diet & Lifestyle',
     description: 'Nutrition and healthy living tips',
-    icon: 'Apple',
+    icon: 'heart-outline',
     color: '#6BBF59',
     questions: [
       {
@@ -222,7 +229,7 @@ export const quizCategories: QuizCategory[] = [
     id: 'living',
     title: 'Living with Dialysis',
     description: 'Managing daily life and well-being',
-    icon: 'Sun',
+    icon: 'heart-outline',
     color: '#F5A623',
     questions: [
       {

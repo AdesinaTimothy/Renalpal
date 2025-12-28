@@ -11,10 +11,13 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import CategoryCard from "@/components/Categories";
-import DailyQuizCard from "@/components/DailyQuizCard";
-// import Categories from "@/components/categories";
+import { quizCategories } from "@/mocks/quiz-data";
+import { shadows } from "@/styles/shadows";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function QuizCategoriesScreen() {
+  const router = useRouter();
+
   return (
     <View className="flex-1 bg-blue-50">
       <LinearGradient colors={["#F0F9FF", "#E0F2FE", "#FFFFFF"]} />
@@ -25,42 +28,40 @@ export default function QuizCategoriesScreen() {
           </Text>
 
           <View className=" flex gap-4">
-            <CategoryCard
-              title="Dialysis Basics"
-              description="Learn the fundamentals of dialysis treatment"
-              questionCount={5}
-              iconName="book-outline"
-              iconBgColor="bg-blue-500"
-              onPress={() => console.log("Pressed")}
-            />
-            <CategoryCard
-              title="Treatment and Care"
-              description="Understanding your treatment process"
-              questionCount={5}
-              iconName="heart-outline"
-              iconBgColor="bg-red-500"
-              onPress={() => console.log("Pressed")}
-            />
-            <CategoryCard
-              title="Diet and Lifestyle"
-              description="Nutrition and healthy living tips"
-              questionCount={5}
-              iconName="fast-food-outline"
-              iconBgColor="bg-green-500"
-              onPress={() => console.log("Pressed")}
-            />
-            <CategoryCard
-              title="Living with Dialysis"
-              description="Nutrition and healthy living tips"
-              questionCount={5}
-              iconName="sparkles-outline"
-              iconBgColor="bg-amber-500"
-              onPress={() => console.log("Pressed")}
-            />
+            {quizCategories.map((quiz) => {
+              return (
+                <TouchableOpacity
+                  key={quiz.id}
+                  activeOpacity={0.7}
+                  onPress={() => router.push(`/quiz/${quiz.id}`)}
+                  className="flex-row items-center bg-white rounded-2xl gap-3 px-5 py-5 shadow-md"
+                  style={shadows.card}
+                >
+                  <View
+                    className="w-16 h-16 rounded-2xl items-center justify-center"
+                    style={{ backgroundColor: quiz.color }}
+                  >
+                    <Ionicons name={quiz.icon} size={24} color="white" />
+                  </View>
+
+                  <View className="flex-1">
+                    <Text className="text-2xl font-bold text-gray-800 mb-1">
+                      {quiz.title}
+                    </Text>
+                    <Text className="text-base text-gray-600 mb-1">
+                      {quiz.description}
+                    </Text>
+                    <Text className="text-base text-gray-600 mb-1">
+                      {quiz.questions.length} questions
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
 
             <View className="flex items-center justify-center mt-4">
               <Text className="text-lg text-gray-600 mb-8">
-                🍎 Test your knowledge about dialysis treatment
+                💙 Test your knowledge about dialysis treatment
               </Text>
             </View>
           </View>

@@ -19,6 +19,7 @@ export default function QuizLayout() {
         name="index"
         options={{
           title: "Quiz",
+          headerShown: true,
         }}
       />
       <Stack.Screen
@@ -26,6 +27,7 @@ export default function QuizLayout() {
         options={{
           title: "Quiz",
           headerBackTitle: "Categories",
+          headerShown: true,
         }}
       />
       <Stack.Screen

@@ -50,7 +50,7 @@ export default function TabLayout() {
         name="quiz"
         options={{
           title: "Quiz",
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="school-outline" size={size} color={color} />
           ),
