@@ -33,7 +33,7 @@ export default function QuizLayout() {
       <Stack.Screen
         name="results"
         options={{
-          headerShown: false,
+          headerShown: true,
           gestureEnabled: false,
         }}
       />

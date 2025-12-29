@@ -72,6 +72,9 @@ const category = () => {
         },
       });
     } else {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedAnswer(null);
+      setShowExplanation(false);
     }
   };
 
@@ -92,7 +95,8 @@ const category = () => {
         {/* Progress Text */}
         <View className="mb-5">
           <Text className="text-sm text-[#64748b] font-semibold mt-2">
-            Question {1} of {selectedQuizCategory?.questions.length}
+            Question {currentQuestionIndex + 1} of{" "}
+            {selectedQuizCategory?.questions.length}
           </Text>
         </View>
 
