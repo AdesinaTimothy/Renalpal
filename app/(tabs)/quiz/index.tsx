@@ -10,7 +10,6 @@ import {
   Animated,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import CategoryCard from "@/components/Categories";
 import { quizCategories } from "@/mocks/quiz-data";
 import { shadows } from "@/styles/shadows";
 import { Ionicons } from "@expo/vector-icons";
@@ -66,7 +65,6 @@ export default function QuizCategoriesScreen() {
             </View>
           </View>
         </View>
-        <View></View>
       </ScrollView>
     </View>
   );
