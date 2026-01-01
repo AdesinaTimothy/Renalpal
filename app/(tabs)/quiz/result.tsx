@@ -53,7 +53,7 @@ const result = () => {
     }
   };
 
-  const result = getMessage();
+  const resultMessage = getMessage();
 
   return (
     <View className="flex-1 ">
@@ -69,9 +69,9 @@ const result = () => {
           }}
         >
           <View className="flex items-center gap-4">
-            <Text className="text-[72px] mb-4">{result.emoji}</Text>
+            <Text className="text-[72px] mb-4">{resultMessage.emoji}</Text>
             <Text className="text-[32px] font-extrabold text-slate-800 mb-8 text-center">
-              {result.title}
+              {resultMessage.title}
             </Text>
           </View>
 
@@ -86,7 +86,7 @@ const result = () => {
               backgroundColor: "green",
             }}
           >
-            <Text className="text-[56px] font-extrabold text-white">
+            <Text className="text-[48px] font-extrabold text-white">
               {percentage}%
             </Text>
           </View>
@@ -106,10 +106,11 @@ const result = () => {
 
           <View>
             <Text className="text-base text-slate-500 text-center leading-6 px-4">
-              {result.message}
+              {resultMessage.message}
             </Text>
           </View>
         </View>
+        {/* Button Container */}
         <View className="flex  gap-3 mt-5">
           <TouchableOpacity
             onPress={() => router.back()}
@@ -134,7 +135,6 @@ const result = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        ; */
       </ScrollView>
     </View>
   );
