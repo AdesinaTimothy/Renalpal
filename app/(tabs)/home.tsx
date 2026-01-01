@@ -86,15 +86,7 @@ const home = () => {
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{ flex: 1, borderRadius: 24 }}
-            >
-              <FeatureCard
-                title="Ask AI Assistant"
-                description="Get instant answers to your dialysis questions"
-                iconName="help-outline"
-                iconBgColor="bg-white/25"
-                onPress={() => router.push("/ai")}
-              />
-            </LinearGradient>
+            ></LinearGradient>
 
             <View className="flex bg-white gap-4 p-6 mt-3 rounded-3xl border border-gray-200">
               <Text className="text-gray-800 text-2xl font-bold ">

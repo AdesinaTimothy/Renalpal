@@ -68,16 +68,6 @@ export default function TabLayout() {
           tabBarBadge: 1,
         }}
       />
-
-      <Tabs.Screen
-        name="ai"
-        options={{
-          title: "Ai",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="bandage-outline" size={size} color={color} />
-          ),
-        }}
-      />
     </Tabs>
   );
 }

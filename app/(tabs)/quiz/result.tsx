@@ -9,7 +9,6 @@ import React from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import FeatureCard from "@/components/FeatureCard";
 
 const result = () => {
   const { score, total, categoryTitle } = useLocalSearchParams<{
@@ -56,27 +55,87 @@ const result = () => {
 
   const result = getMessage();
 
-  const getGradientColors = (): [string, string] => {
-    if (percentage >= 80) {
-      return ["#10b981", "#059669"];
-    } else if (percentage >= 60) {
-      return ["#f59e0b", "#d97706"];
-    } else {
-      return ["#6366f1", "#4f46e5"];
-    }
-  };
-
   return (
     <View className="flex-1 ">
-      {/* Gradient background */}
-      <LinearGradient
-        colors={["#F0F9FF", "#E0F2FE", "#FFFFFF"]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        className="flex-1"
-      >
-        <ScrollView className="p-4"></ScrollView>
-      </LinearGradient>
+      <ScrollView className="p-4">
+        <View
+          className="bg-white rounded-[24px] p-8 items-center"
+          style={{
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 8 },
+            shadowOpacity: 0.1,
+            shadowRadius: 24,
+            elevation: 10,
+          }}
+        >
+          <View className="flex items-center gap-4">
+            <Text className="text-[72px] mb-4">{result.emoji}</Text>
+            <Text className="text-[32px] font-extrabold text-slate-800 mb-8 text-center">
+              {result.title}
+            </Text>
+          </View>
+
+          <View
+            className="w-[160px] h-[160px] border-yellow-500 border-2 mb-5 rounded-full items-center justify-center"
+            style={{
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.2,
+              shadowRadius: 16,
+              elevation: 8,
+              backgroundColor: "green",
+            }}
+          >
+            <Text className="text-[56px] font-extrabold text-white">
+              {percentage}%
+            </Text>
+          </View>
+
+          <Text className="text-[18px] text-slate-500 font-semibold mb-6">
+            {scoreNum} out of {totalNum} correct
+          </Text>
+
+          <View className="bg-slate-100 px-5 py-3 rounded-xl mb-6">
+            <Text className="text-xs text-slate-400 font-semibold uppercase tracking-widest text-center mb-1">
+              category
+            </Text>
+            <Text className="text-base font-bold text-slate-800 text-center">
+              {categoryTitle}
+            </Text>
+          </View>
+
+          <View>
+            <Text className="text-base text-slate-500 text-center leading-6 px-4">
+              {result.message}
+            </Text>
+          </View>
+        </View>
+        <View className="flex  gap-3 mt-5">
+          <TouchableOpacity
+            onPress={() => router.back()}
+            className="flex-row items-center justify-center py-4 rounded-2xl bg-white gap-2 border-2 border-slate-200"
+            activeOpacity={0.8}
+          >
+            <Ionicons name="arrow-undo-outline" size={20} color="#3b82f6" />
+            <Text className=" text-[17px] font-bold text-[#1e293b]">
+              Try Again
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => router.push("/quiz")}
+            className="flex-row items-center justify-center py-4 rounded-2xl bg-white gap-2 border-2 border-slate-200"
+            style={{ backgroundColor: "#3b82f6", borderColor: "#3b82f6" }}
+            activeOpacity={0.8}
+          >
+            <Ionicons name="school-outline" size={20} color={"white"} />
+            <Text className="text-[17px] font-bold text-white">
+              Back to Quizzes
+            </Text>
+          </TouchableOpacity>
+        </View>
+        ; */
+      </ScrollView>
     </View>
   );
 };
@@ -84,28 +143,3 @@ const result = () => {
 export default result;
 
 const styles = StyleSheet.create({});
-
-{
-  /* <View className="flex gap-3">
-  <TouchableOpacity
-    onPress={() => router.back()}
-    className="flex-row items-center justify-center py-4 rounded-2xl bg-white gap-2 border-2 border-slate-200"
-    activeOpacity={0.8}
-  >
-    <Ionicons name="arrow-undo-outline" size={20} color={"#355564"} />
-    <Text className=" text-[17px] font-bold text-[#1e293b]">Try Again</Text>
-  </TouchableOpacity>
-
-  <TouchableOpacity
-    onPress={() => router.push("/quiz")}
-    className="flex-row items-center justify-center py-4 rounded-2xl bg-white gap-2 border-2 border-slate-200"
-    style={{ backgroundColor: "##3b82f6", borderColor: "#3b82f6" }}
-    activeOpacity={0.8}
-  >
-    <Ionicons name="arrow-undo-outline" size={20} color={"#355564"} />
-    <Text className="text-[17px] font-bold text-[#1e293b]">
-      Back to Quizzes
-    </Text>
-  </TouchableOpacity>
-</View>; */
-}
