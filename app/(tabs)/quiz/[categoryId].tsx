@@ -78,6 +78,22 @@ const category = () => {
     }
   };
 
+  const getOptionStyle = (index: number) => {
+    if (selectedAnswer === null) {
+      return styles.option;
+    }
+
+    if (index === currentQuestion.correctAnswer) {
+      return [styles.option, styles.optionCorrect];
+    }
+
+    if (index === selectedAnswer && index !== currentQuestion.correctAnswer) {
+      return [styles.option, styles.optionIncorrect];
+    }
+
+    return [styles.option, styles.optionFaded];
+  };
+
   return (
     <View className="flex-1 bg-blue-50">
       <LinearGradient colors={["#F0F9FF", "#E0F2FE", "#FFFFFF"]} />
@@ -121,38 +137,42 @@ const category = () => {
           {currentQuestion?.options.map((option, index) => {
             const isSelected = selectedAnswer === index;
             const isCorrect = index === currentQuestion.correctAnswer;
+            const showIcon =
+              selectedAnswer !== null && (isCorrect || isSelected);
 
             return (
               <TouchableOpacity
                 key={index}
                 onPress={() => handleAnswerSelect(index)}
-                // disabled={}
+                disabled={selectedAnswer !== null}
                 activeOpacity={0.7}
               >
-                <View
-                  className="bg-white flex-row items-center justify-between rounded-[16px] p-[18px]  border-2 border-slate-200  "
-                  style={{
-                    shadowColor: "#000",
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.04,
-                    shadowRadius: 8,
-                    elevation: 2,
-                  }}
-                >
-                  {/* Option Div */}
-                  <View className="flex-1 flex-row items-center">
-                    <View className="w-8 h-8 rounded-full bg-[#f1f5f9] items-center justify-center mr-4">
-                      <Text className="text-sm font-bold text-[#475569]">
+                <View style={getOptionStyle(index)}>
+                  <View style={styles.optionContent}>
+                    <View style={styles.optionNumber}>
+                      <Text style={styles.optionNumberText}>
                         {String.fromCharCode(65 + index)}
                       </Text>
                     </View>
-                    <Text className="text-base text-slate-800 leading-6 flex-1">
-                      {option}
-                    </Text>
+                    <Text style={styles.optionText}>{option}</Text>
                   </View>
-
-                  {/* Show Icon */}
-                  <View></View>
+                  {showIcon && (
+                    <View className="ml-2">
+                      {isCorrect ? (
+                        <Ionicons
+                          name="checkmark-outline"
+                          size={26}
+                          color={"green"}
+                        />
+                      ) : (
+                        <Ionicons
+                          name="close-outline"
+                          size={26}
+                          color={"red"}
+                        />
+                      )}
+                    </View>
+                  )}
                 </View>
               </TouchableOpacity>
             );
@@ -207,4 +227,59 @@ const category = () => {
 
 export default category;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  option: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    padding: 18,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderWidth: 2,
+    borderColor: "#e2e8f0",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
+    elevation: 2,
+  },
+  optionContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
+  },
+  optionCorrect: {
+    borderColor: "#22c55e",
+    backgroundColor: "#f0fdf4",
+  },
+  optionIncorrect: {
+    borderColor: "#ef4444",
+    backgroundColor: "#fef2f2",
+  },
+  optionFaded: {
+    opacity: 0.5,
+  },
+  optionNumber: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: "#f1f5f9",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 12,
+  },
+  optionNumberText: {
+    fontSize: 16,
+    fontWeight: "700" as const,
+    color: "#475569",
+  },
+  optionText: {
+    fontSize: 16,
+    color: "#1e293b",
+    lineHeight: 24,
+    flex: 1,
+  },
+  iconContainer: {
+    marginLeft: 8,
+  },
+});
